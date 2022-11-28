@@ -1,0 +1,28 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @post %>
+
+<div>
+<%
+=begin%>
+ <% if current_user.admin? || current_user.moderator? %>
+  <%= link_to "Edit this post", edit_post_path(@post) %> 
+  <% end %> 
+<%
+=end%>
+<% if can? :update, @post %>
+<%= link_to "Edit this post", edit_post_path(@post) %> 
+<% end %>
+
+  <%= link_to "Back to posts", posts_path %>
+<%
+=begin%>
+ <% if current_user.admin? %>
+  <%= button_to "Destroy this post", @post, method: :delete %>
+  <% end %> 
+<%
+=end%>
+<% if can? :destroy, @post %>
+<%= button_to "Destroy this post", @post, method: :delete, data: {confirm: " confirm?? "}%>
+<% end %>
+</div>

@@ -1,0 +1,55 @@
+<%  if user_signed_in? %> 
+<%
+=begin%>
+ <div id="<%= dom_id post %>">
+  <p>
+    <strong>Title:</strong>
+    <%= post.Title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= post.Description %>
+  </p> 
+<%
+=end%>
+
+<%
+=begin%>
+ <% if current_user.user? %> 
+<%
+=end%>
+<table>
+<thead>
+<tr>
+<th class="p-3"><strong>Title:</strong></th>
+<th class="p-3"><strong>Description:</strong></th>
+<th><strong>User</strong></th>
+
+</tr>
+</thead>
+<tbody>
+<div id="<%= dom_id post %>">
+<tr>
+<td class="p-3"><%= post.Title %></td>
+<td class="p-3"><%= post.Description %></td>
+<td class="p-2"><%= post.user.email.split("@")[0] %></td>
+</tr>
+
+</div>
+</tbody>
+</table>
+<%
+=begin%>
+ <% else %>
+  <h3>only admin can see the posts</h3>
+<% end %> 
+<%
+=end%>
+
+<%
+=begin%>
+ </div> 
+<%
+=end%>
+<% end %>
